@@ -8,15 +8,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInstaller;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
-import android.widget.TextView;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent downloadIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
                 downloadIntent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
-                downloadIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, true);
                 downloadIntent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
                 downloadIntent.setDataAndType(downloadManager.getUriForDownloadedFile(downloadId), downloadManager.getMimeTypeForDownloadedFile(downloadId));
                 downloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 downloadIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(downloadIntent);
+
             }
         }
     };
@@ -55,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.fab).setOnClickListener(v -> {
 //            ((TextView)findViewById(R.id.tvCenter)).setText("version new");
-            downloadAPK("https://github.com/Nghia99Dev/test/raw/3ac6211b75448425fdd232ee516f48a343da681a/app/build/outputs/apk/debug/app-debug.apk");
+//            downloadAPK("https://github.com/Nghia99Dev/test/raw/3ac6211b75448425fdd232ee516f48a343da681a/app/build/outputs/apk/debug/app-debug.apk");
+
+            PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            powerManager.reboot(null);
         });
     }
 
