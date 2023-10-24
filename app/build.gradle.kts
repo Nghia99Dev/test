@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.fpt.testapplication"
-        minSdk = 26
+        minSdk = 29
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation("com.jaredrummler:ktsh:1.0.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
